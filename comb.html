@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexagon Background Hover Animation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        body {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="wrapper"></div>
+
+    <script>
+        function createHoneycomb() {
+            const wrapper = document.getElementById('wrapper');
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            
+            const hexHeight = 100;
+            const hexWidth = 120;
+            const rowHeight = hexHeight * 0.75;
+            
+            const numRows = Math.ceil(viewportHeight / rowHeight) + 2;
+            const hexPerRow = Math.ceil(viewportWidth / (hexWidth * 0.75)) + 2;
+            
+            wrapper.innerHTML = '';
+            
+            for (let i = 0; i < numRows; i++) {
+                const hexRow = document.createElement('div');
+                hexRow.className = 'hex';
+                
+                for (let j = 0; j < hexPerRow; j++) {
+                    const hexagon = document.createElement('div');
+                    hexagon.className = 'hexagon';
+                    
+                    // Create ambient glow layer
+                    const ambient = document.createElement('div');
+                    ambient.className = 'hexagon-ambient';
+                    hexagon.appendChild(ambient);
+                    
+                    // Create main glow layer
+                    const glow = document.createElement('div');
+                    glow.className = 'hexagon-glow';
+                    hexagon.appendChild(glow);
+                    
+                    // Create hexagon shape
+                    const shape = document.createElement('div');
+                    shape.className = 'hexagon-shape';
+                    hexagon.appendChild(shape);
+                    
+                    // Create edge highlight
+                    const edge = document.createElement('div');
+                    edge.className = 'hexagon-edge';
+                    hexagon.appendChild(edge);
+                    
+                    hexRow.appendChild(hexagon);
+                }
+                
+                wrapper.appendChild(hexRow);
+            }
+        }
+
+        // Initial creation
+        createHoneycomb();
+        
+        // Handle resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(createHoneycomb, 250);
+        });
+
+        let lastFrame = 0;
+        const fps = 60;
+        const fpsInterval = 1000 / fps;
+
+        function updateHexagons(e) {
+            const currentTime = performance.now();
+            if (currentTime - lastFrame < fpsInterval) return;
+            lastFrame = currentTime;
+
+            const hexagons = document.querySelectorAll('.hexagon');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const radius = 300;
+
+            hexagons.forEach(hex => {
+                const rect = hex.getBoundingClientRect();
+                const hexCenterX = rect.left + rect.width / 2;
+                const hexCenterY = rect.top + rect.height / 2;
+                
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - hexCenterX, 2) + 
+                    Math.pow(mouseY - hexCenterY, 2)
+                );
+
+                if (distance < radius) {
+                    const intensity = 1 - (distance / radius);
+                    
+                    // Calculate 3D effect
+                    const dirX = hexCenterX - mouseX;
+                    const dirY = hexCenterY - mouseY;
+                    const length = Math.sqrt(dirX * dirX + dirY * dirY);
+                    const normalizedDirX = dirX / length;
+                    const normalizedDirY = dirY / length;
+                    
+                    const maxElevation = 15;
+                    const elevation = Math.floor(maxElevation * intensity);
+                    
+                    // Update glow intensities
+                    const glow = hex.querySelector('.hexagon-glow');
+                    const ambient = hex.querySelector('.hexagon-ambient');
+                    const shape = hex.querySelector('.hexagon-shape');
+                    const edge = hex.querySelector('.hexagon-edge');
+                    
+                    if (glow) {
+                        glow.style.opacity = intensity;
+                        glow.style.transform = `scale(${1 + intensity * 0.2})`;
+                    }
+                    
+                    if (ambient) {
+                        ambient.style.opacity = intensity * 0.8;
+                        ambient.style.transform = `scale(${1 + intensity * 0.5})`;
+                    }
+                    
+                    if (shape) {
+                        shape.style.transform = `translateZ(${elevation}px)`;
+                    }
+                    
+                    if (edge) {
+                        edge.style.opacity = intensity;
+                        edge.style.transform = `translateZ(${elevation + 1}px)`;
+                    }
+
+                    // Apply 3D rotation
+                    hex.style.transform = `
+                        translate3d(${normalizedDirX * elevation * 0.5}px,
+                                  ${normalizedDirY * elevation * 0.5}px,
+                                  0)
+                        rotateX(${-normalizedDirY * 15 * intensity}deg)
+                        rotateY(${normalizedDirX * 15 * intensity}deg)
+                    `;
+                    
+                    hex.style.zIndex = Math.floor(intensity * 20) + 1;
+                } else {
+                    // Reset all effects
+                    const glow = hex.querySelector('.hexagon-glow');
+                    const ambient = hex.querySelector('.hexagon-ambient');
+                    const shape = hex.querySelector('.hexagon-shape');
+                    const edge = hex.querySelector('.hexagon-edge');
+                    
+                    if (glow) glow.style.opacity = '0';
+                    if (ambient) ambient.style.opacity = '0';
+                    if (shape) shape.style.transform = 'translateZ(0)';
+                    if (edge) edge.style.opacity = '0';
+                    
+                    hex.style.transform = 'translate3d(0, 0, 0)';
+                    hex.style.zIndex = '1';
+                }
+            });
+        }
+
+        // Mouse effect with throttling
+        document.addEventListener('mousemove', updateHexagons, { passive: true });
+        
+        // Add direct hexagon hover handling
+        document.getElementById('wrapper').addEventListener('mouseover', (e) => {
+            if (e.target.classList.contains('hexagon')) {
+                e.target.classList.add('glow');
+            }
+        }, { passive: true });
+
+        document.getElementById('wrapper').addEventListener('mouseout', (e) => {
+            if (e.target.classList.contains('hexagon')) {
+                e.target.classList.remove('glow', 'active');
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>

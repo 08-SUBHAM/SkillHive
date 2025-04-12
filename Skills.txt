@@ -1,0 +1,68 @@
+Area	Tech	Why
+UI Library	React.js	Component-based, fast, popular
+Styling	Tailwind CSS	Clean, fast, utility-first styling
+State Mgmt	Redux Toolkit / Zustand	For handling auth, user data, sessions
+Routing	React Router	Page navigation
+Forms	Formik + Yup	Form handling + validation
+Animations	Framer Motion (optional)	Smooth, modern transitions
+PWA Support	Service Worker	So it feels like an app on mobile
+Video Chat	WebRTC / Agora SDK / Daily.co	For live mentoring sessions
+Charts	Recharts or Chart.js	Track learning stats, karma, etc.
+File Uploads	Cloudinary SDK	For profile pics, recorded courses
+✅ Backend (Server)
+Area	Tech	Why
+Runtime	Node.js	Non-blocking, great for real-time & APIs
+Framework	Express.js	Lightweight, modular, easy setup
+Database	MongoDB + Mongoose	Flexible schema for users/courses/sessions
+Auth	JWT + bcrypt	Token-based login, secure password hashing
+Rate Limiting	Express-rate-limit + Helmet	Prevent abuse, secure endpoints
+API Calls	Axios / Native Fetch	For internal/external APIs
+Background Jobs	Node-cron or BullJS + Redis	Scheduled reminders, weekly summaries
+Email Service	Nodemailer / Resend	Session reminders, onboarding, alerts
+Payment (optional)	Stripe API	Mentor subscriptions, session fees
+✅ Database Models & Structure
+Model	Fields
+User	name, email, password, role, bio, karma, skills, timezone
+Course	title, instructor, videos, tags, rating, difficulty
+Session	mentorId, menteeId, time, format (live/chat), status
+Review	from, to, rating, feedback, sessionId
+Karma	userId, source (help, feedback, referral), points
+Notifications	to, message, read/unread, timestamp
+✅ Dev Tools / Quality of Life
+Tool	Purpose
+Nodemon	Auto-restart backend on save
+Dotenv	Manage env vars securely
+Postman	API testing
+ESLint + Prettier	Code formatting & linting
+Husky + Lint-Staged	Pre-commit formatting
+✅ Deployment & CI/CD
+Area	Tech
+Frontend Hosting	Netlify / Vercel
+Backend Hosting	Render / Railway / Heroku
+DB Hosting	MongoDB Atlas
+CI/CD	GitHub Actions (build, deploy on push)
+Domain	Namecheap / GoDaddy + Cloudflare
+✅ Optional / Future Add-ons
+Feature	Tech
+Real-Time Chat	Socket.io / Firebase
+Push Notifications	Web Push / OneSignal
+AI Summarizer	OpenAI API / Local NLP
+Forum / Threads	Custom + Mongo or Discourse Integration
+Mobile App	React Native or Kotlin (native)
+Analytics	Google Analytics / PostHog / Mixpanel
+📚 What You Should Learn First (In Order):
+React + Tailwind + Router + Axios
+
+Node.js + Express + MongoDB + Mongoose
+
+JWT + Auth Flow (Login, Register, Protected Routes)
+
+Cloudinary, File Uploads
+
+WebRTC or Video SDKs (for live sessions)
+
+Karma system logic + review models
+
+Background tasks (Node-cron / Bull)
+
+Deploy pipeline (Netlify + Render + GitHub)

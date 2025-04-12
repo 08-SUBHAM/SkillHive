@@ -1,0 +1,150 @@
+
+🧠 FEATURE BREAKDOWN: SkillHive (Skillshare × MentorCruise Hybrid)
+📹 Learning Content
+1. Pre-recorded Micro-Courses by Verified Users
+Short, focused lessons (5–15 mins each)
+
+Uploaded by users with a certain credibility level
+
+Review system to ensure quality
+
+Option to attach projects/assignments to each course
+
+Auto-transcriptions & subtitles (future plan)
+
+2. Community-Curated Playlists
+Users can make "playlists" of courses or lessons across different topics
+
+Like: “Frontend Dev Starter Pack” or “Build a Portfolio in 30 Days”
+
+Upvote/downvote feature to surface the best ones
+
+Playlists can be saved, shared, or even forked like GitHub repos
+
+3. “Teach This, Learn That” Barter Lessons
+User A teaches you design in exchange for learning backend from you
+
+One-on-one or small group model
+
+Based on exchange credits or karma points (more on that below)
+
+👥 Mentorship Layer
+4. Mentorship Booking with Time Slots
+Mentors can set their availability
+
+Learners book 1-on-1 slots (live video, async chat, or recorded feedback)
+
+Time-based pricing or free with karma points
+
+5. Short- or Long-term Subscriptions
+Short: 1-week crash courses or sprint-style guidance
+
+Long: 1-month mentorship for project-building or career goals
+
+Track progress over time via dashboard (goals, milestones, feedback)
+
+6. Goal Tracking + Weekly Check-ins
+Mentees set clear goals (e.g. “Learn React Basics in 1 Week”)
+
+Mentor approves/adapts plan
+
+Check-in forms, chats, or short video/audio updates every week
+
+7. Rate Mentors (Uber-style Ratings)
+After each session or period, mentees rate mentors on:
+
+Communication
+
+Knowledge
+
+Helpfulness
+
+Value for time
+
+Builds mentor credibility score
+
+🤝 Peer Exchange System
+8. Karma Points for Helping Others
+Help others = earn karma
+
+Use karma to:
+
+Request lessons
+
+Get mentorship slots
+
+Access premium community features
+
+Karma can come from:
+
+Answering questions
+
+Reviewing projects
+
+Completing feedback loops
+
+9. Credibility Levels
+Beginner → Contributor → Trusted → Mentor → Legend
+
+You unlock abilities:
+
+Post lessons
+
+Moderate forums
+
+Join beta features
+
+Gamified without being annoying
+
+10. Community Threads, Collab Requests, Shoutouts
+Tag people: “Looking for someone to pair up for a Web3 bootcamp”
+
+Highlight great contributors: “Mentor of the Week”
+
+Project forums: build-in-public style + feedback
+
+🧩 Matchmaking Engine
+11. Match Based On Skills
+Input:
+
+What you want to learn
+
+What you want to teach
+
+Suggest:
+
+Users with overlap
+
+Opposite matches (A teaches B what B wants to learn, and vice versa)
+
+Cross-skill collabs (Designer + Developer, etc.)
+
+12. Filter by Time & Format
+You can select:
+
+Time availability: weekends, evenings, etc.
+
+Preferred style: async chat, live video, written guides
+
+Learning intensity: slow-paced, goal-focused, crash course
+
+13. Mentor Matching & Session Types
+Automatic or manual suggestions
+
+Match based on:
+
+Past activity
+
+Communication style
+
+Field of expertise
+
+You choose your vibe, your person
+
+🧠 Imagine the Flow:
+You log into SkillHive
+
+It shows:
+→ “3 people want to learn what you know”
+→ “2 mentors match your learning goals”
+→ “Join this week’s React crash group — 4 open slots”
